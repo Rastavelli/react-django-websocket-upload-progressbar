@@ -9,7 +9,6 @@ class ProgressUploadHandler(TemporaryFileUploadHandler):
 
     def receive_data_chunk(self, raw_data, start):
         file_size = int(self.request.META['CONTENT_LENGTH']) # 824962512
-        print(self.request.META)
         progress_status = round((start * 100) / file_size, 2)
         self.render_progress(progress_status)
         self.file.write(raw_data)
